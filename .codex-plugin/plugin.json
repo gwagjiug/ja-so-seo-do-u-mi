@@ -1,0 +1,36 @@
+{
+  "name": "ja-so-seo-do-u-mi",
+  "version": "0.1.0",
+  "description": "Codex plugin for revising Korean job application essays from a pasted JD, prompt, length limit, and rough draft into a submission-ready 자기소개서 while preserving facts.",
+  "author": {
+    "name": "jiukkwak"
+  },
+  "license": "MIT",
+  "keywords": [
+    "korean",
+    "cover-letter",
+    "self-introduction",
+    "job-application",
+    "writing",
+    "codex",
+    "skill"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "자소서 도우미",
+    "shortDescription": "JD와 문항 기반으로 한국어 자기소개서를 제출용으로 다듬습니다.",
+    "longDescription": "자소서 도우미는 채용공고/JD, 자기소개서 문항, 글자수 제한, 초안을 입력받아 문항 의도와 직무 적합성을 분석하고, 실제 경험을 과장 없이 구조화해 기업 제출용 자기소개서로 수정하는 Codex 스킬입니다.",
+    "developerName": "jiukkwak",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "자소서 도우미로 이 초안을 제출용으로 수정해줘. 채용공고/JD, 문항, 글자수, 초안을 붙여넣을게.",
+      "JD와 자소서 문항을 기준으로 초안을 자연스럽고 구체적인 제출본으로 고쳐줘."
+    ],
+    "brandColor": "#1F2937"
+  }
+}
