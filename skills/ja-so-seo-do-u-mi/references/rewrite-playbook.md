@@ -6,7 +6,7 @@ Use this when turning the diagnosis into final submission prose.
 
 ```text
 Answer thesis
-→ evidence experience
+→ locked appeal point or evidence experience
 → user's action
 → result/change
 → JD relevance
@@ -14,6 +14,16 @@ Answer thesis
 ```
 
 Do not show labels like Situation, Task, Action, Result.
+
+## Rewrite Modes
+
+Default to preservation-first revision:
+
+- Keep the draft's main experience and intended appeal unless there is a prompt, length, fabrication, interview-safety, or blind-hiring reason to change it.
+- Improve awkward wording, order, and concreteness at the smallest structural scope that solves the problem.
+- Do not replace the user's chosen strength with a different strength just because it fits the JD better.
+
+Use full rewrite mode only when the user explicitly asks for a new structure, full rewrite, or submission-ready rewrite from scratch. Even then, preserve or report locked appeal points.
 
 ## Concreteness Anchors
 
@@ -67,7 +77,9 @@ When over limit:
 2. delete duplicate reflection
 3. shorten background
 4. combine sentences
-5. keep action and result
+5. compress locked appeal points without deleting their meaning
+6. keep action and result
+7. omit a locked appeal point only when compression is insufficient, then report it under `축약/생략한 부분`
 
 When under target:
 
@@ -121,3 +133,4 @@ If the draft lacks required evidence:
 - produce the best conservative revision
 - add a short `확인 필요` note
 - never fill the gap with invented numbers or experiences
+- preserve the user's intended appeal as a modest claim if it can be defended from the draft
