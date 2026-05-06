@@ -109,14 +109,14 @@ d.line((72, 502, 1208, 502), fill=LINE, width=2)
 d.text((76, 526), "4 inputs", font=metric_f, fill=INK)
 d.text((76, 574), "JD · 문항 · 글자수 · 초안", font=small_f, fill=MUTED)
 
-d.text((350, 526), "7 phases", font=metric_f, fill=INK)
-d.text((350, 574), "파싱 → 진단 → 재작성 → 감사", font=small_f, fill=MUTED)
+d.text((350, 526), "8 phases", font=metric_f, fill=INK)
+d.text((350, 574), "파싱 → 잠금 → 진단 → 감사", font=small_f, fill=MUTED)
 
 d.text((696, 526), "No fabrication", font=metric_f, fill=GOOD)
 d.text((696, 574), "없는 경험·수치·기술 추가 금지", font=small_f, fill=MUTED)
 
 d.rounded_rectangle((1056, 526, 1208, 588), radius=31, fill=GOOD)
-d.text((1094, 539), "v0.1", font=font(28), fill=(255, 255, 255))
+d.text((1094, 539), "v0.2", font=font(28), fill=(255, 255, 255))
 
 img.save(OUT, "PNG", optimize=True)
 print(f"saved: {OUT} ({OUT.stat().st_size // 1024} KB)")

@@ -4,9 +4,11 @@ Use these rules to reduce formulaic application prose that makes a Korean 자기
 
 This file is specific to job application essays. It should not be treated as a general Korean prose polishing guide. Prefer concrete action, factual boundaries, JD relevance, and interview-safe claims over more polished or dramatic language.
 
+Naturalness is never permission to erase the applicant's intended appeal. Before deleting, replacing, or demoting a sentence, check whether it is part of the Appeal Lock from `SKILL.md`.
+
 ## Priority Levels
 
-- **P0 Submission Risk**: fabrication risk, company/role error, or interview-unsafe claim. Delete, soften, or ask for confirmation immediately.
+- **P0 Submission Risk**: fabrication risk, company/role error, or interview-unsafe claim. Delete, soften, or ask for confirmation immediately; if this affects a locked appeal point, report it.
 - **P1 Persuasion Loss**: cliche ending, unsupported competency claim, generic company praise. Rewrite before style polishing.
 - **P2 Style Improvement**: repetitive reflection, awkward closing, rhythm issue. Adjust when length and prompt fit allow.
 
@@ -27,6 +29,7 @@ Rewrite direction:
 - Put the user's actual action before the evaluation.
 - Move words like `역량`, `이해도`, and `성장` after behavior and result, or remove them.
 - If there is no result, use observable traces such as a change, response, standard, retry, decision, or clarified role.
+- Preserve the user's intended strength even when removing generic labels.
 
 Example:
 
@@ -118,6 +121,7 @@ Rewrite direction:
 - Connect the JD's work, customer, product, or problem space to the applicant's experience.
 - If company information is thin, do not fill the gap with generic admiration.
 - Prefer "why I am prepared to do this role here" over "why this company is great."
+- If the user clearly wants to emphasize a company/product/domain attraction, keep that motivation and ground it in the user's preparation instead of deleting it.
 
 ## AN-6. Empty Future Ambition
 
@@ -155,6 +159,7 @@ Rewrite direction:
 - Replace generic learning with next action, changed working method, or role relevance.
 - Keep reflection only when the prompt asks for it.
 - If endings repeat, change some sentences into action-oriented statements.
+- If a reflection expresses a locked value or work attitude, compress it into one concrete sentence instead of removing it.
 
 ## AN-8. Over-Emotional Motivation
 
@@ -227,15 +232,17 @@ Rewrite direction:
 - Translate JD jargon into the work expectation behind it.
 - For technical roles, name tools only after the user problem or work decision is clear.
 - For non-technical roles, ground the sentence in customers, documents, operations, campaigns, quality checks, education, sales, research, or other role-appropriate work.
+- Do not let JD terms bury the user's original experience or intended appeal.
 
 ## Rewrite Order
 
-1. Lock facts, numbers, names, dates, tools, and direct quotes.
-2. Remove prompt-irrelevant sentences.
-3. Compress background that does not support the JD fit.
-4. Convert competency labels and cliches into concrete actions.
-5. Remove JD keyword overfit and keep the strongest role connection.
-6. Replace company praise and empty ambition with JD-grounded prose.
-7. Hide exposed writing formulas and reduce repetitive reflection.
-8. Fit the length limit.
-9. Run final audit for factual fidelity and submission constraints.
+1. Lock facts, numbers, names, dates, tools, direct quotes, and user appeal points.
+2. Remove or soften P0 submission risks; report affected appeal points.
+3. Move or compress prompt-irrelevant sentences only when they are not locked appeal points and they hurt prompt fit.
+4. Compress background that does not support the JD fit; preserve locked appeal meaning.
+5. Convert competency labels and cliches into concrete actions.
+6. Remove JD keyword overfit and return the paragraph to the applicant's real evidence.
+7. Replace company praise and empty ambition with JD-grounded prose.
+8. Hide exposed writing formulas and reduce repetitive reflection.
+9. Fit the length limit, compressing locked appeal points before omitting them.
+10. Run final audit for factual fidelity, user-intent fidelity, and submission constraints.

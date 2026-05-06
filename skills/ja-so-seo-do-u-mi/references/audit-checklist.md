@@ -10,6 +10,7 @@ Run this before final response.
 - prompt is not answered
 - wrong company/JD facts are inserted
 - final answer relies on unsupported JD jargon instead of the applicant's evidence
+- a locked user appeal point is removed or replaced without reporting why
 - blind-hiring prohibited personal data appears when relevant
 
 If a hard failure appears, revise once. If still unresolved, report it.
@@ -25,6 +26,16 @@ Check:
 - team result not converted into personal result
 - no new facts introduced
 
+## User Intent Fidelity
+
+Check:
+
+- the final text preserves the draft's main claim or positioning
+- explicit must-preserve points are present unless a hard risk required omission
+- repeated, early, or highly detailed experiences from the draft are not silently dropped
+- generic labels may be rewritten, but the underlying strength or value remains
+- any heavily compressed or omitted appeal point is listed under `축약/생략한 부분`
+
 ## Prompt Fit
 
 Check:
@@ -33,6 +44,7 @@ Check:
 - mandatory elements for the prompt type are present
 - no unrelated life chronology
 - no unsupported conclusion
+- no prompt-fit improvement silently changes the user's intended message
 
 ## JD Fit
 
@@ -42,6 +54,7 @@ Check:
 - no unsupported JD keyword stuffing
 - preferred qualifications are not overstated
 - JD terms clarify fit instead of replacing the applicant's own evidence
+- JD fit does not replace the user's chosen appeal point with a different unsupported one
 
 ## Concreteness
 

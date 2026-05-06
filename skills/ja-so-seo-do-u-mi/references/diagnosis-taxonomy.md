@@ -97,3 +97,15 @@ Signals:
 - no role-neutral anchor appears nearby, such as stakeholder, problem, work context, decision, deliverable, process, result, or constraint
 
 Fix: replace the promise with a realistic next action based on the JD and draft. Use role-specific concreteness without forcing one occupation's examples.
+
+## D-T. Intent Loss Risk
+
+Signals:
+
+- the draft's most detailed or repeated experience disappears in the final direction
+- the user's apparent strength is replaced with a different JD-friendly strength
+- a sentence is deleted because it sounds generic, but the underlying value or motivation is not restated
+- JD keywords become more prominent than the applicant's original action and role
+- "one main experience" selection drops an explicit must-preserve point
+
+Fix: restore the locked appeal point, compress it, or report why it was omitted. Prefer changing the wording over changing the user's intended message.

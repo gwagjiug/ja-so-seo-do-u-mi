@@ -29,6 +29,16 @@ Do not require company name, role name, desired tone, or extra experience unless
     "target": ""
   },
   "draft_text": "",
+  "requested_mode": "preserve_revision|rewrite|diagnose_only|unknown",
+  "appeal_points": [
+    {
+      "point": "",
+      "source": "explicit_user_request|early_position|repetition|detail_density|inferred",
+      "preservation_status": "locked|compressible|risky|unclear"
+    }
+  ],
+  "must_preserve_points": [],
+  "omitted_or_compressed_points": [],
   "company": null,
   "role": null,
   "constraints": [],
@@ -88,6 +98,44 @@ Draft markers include first-person Korean essay prose, often starting with:
 - 프로젝트에서
 - 인턴 기간
 
+### Requested Mode
+
+Default to `preserve_revision` unless the user clearly asks for aggressive rewriting.
+
+Mode markers:
+
+- `preserve_revision`: 수정, 첨삭, 다듬어줘, 문장만, 자연스럽게, 어색한 부분만, 글자수만 맞춰줘
+- `rewrite`: 아예 새로, 구조를 갈아엎어, 제출본으로 재작성, 다시 써줘, 새 버전으로 만들어줘
+- `diagnose_only`: 분석만, 피드백만, 문제점만, 진단해줘
+
+If a prompt mixes modes, prefer the safer narrower mode:
+
+```text
+diagnose_only > preserve_revision > rewrite
+```
+
+Only use `rewrite` when the user explicitly grants structural freedom.
+
+### Appeal Points
+
+Appeal points are not just facts. They are the message the applicant seems to want the reader to remember.
+
+Identify likely appeal points from:
+
+- explicit instructions such as `꼭 살려줘`, `강조하고 싶어`, `이 경험은 유지`
+- the first or final paragraph's central claim
+- experiences repeated across the draft
+- the most detailed episode
+- named strengths, values, or attitudes tied to evidence
+- wording that frames the applicant's desired image, such as 책임감, 조율, 끈기, 고객 중심, 분석, 실행력
+
+Set `preservation_status`:
+
+- `locked`: explicit or clearly central; preserve unless a hard risk appears
+- `compressible`: useful but secondary; may shorten
+- `risky`: likely unsupported, off-prompt, over-personal, or blind-hiring sensitive
+- `unclear`: ask only if the choice would materially change the output
+
 ## Clarifying Questions
 
 Ask only when:
@@ -97,5 +145,6 @@ Ask only when:
 - no length exists and user explicitly asks to fit a limit
 - multiple prompts and one draft cannot be mapped
 - the draft includes unsupported claims that would require confirmation
+- an explicit must-preserve point conflicts with the prompt, length, fabrication safety, or blind-hiring constraints
 
 Use one short question, not a large form.
