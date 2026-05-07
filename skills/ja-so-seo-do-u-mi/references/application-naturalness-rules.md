@@ -234,6 +234,40 @@ Rewrite direction:
 - For non-technical roles, ground the sentence in customers, documents, operations, campaigns, quality checks, education, sales, research, or other role-appropriate work.
 - Do not let JD terms bury the user's original experience or intended appeal.
 
+## AN-12. Defensive Contrast Pattern
+
+Priority: P2
+
+Problem signals:
+
+- 단순히 X가 아닌, Y입니다
+- 그저 X일 뿐만 아니라
+- X를 넘어서
+- X에 그치지 않고
+- sentences begin by denying a simpler interpretation before stating what they actually do
+
+Rewrite direction:
+
+- State what the experience or action is directly, without contrasting with a weaker version first.
+- Replace "단순히 X가 아닌 Y입니다" with "Y입니다" or rephrase to emphasize Y without mentioning X.
+- If contrast is necessary for clarity, use it sparingly and make it factual rather than rhetorical.
+
+Example:
+
+```text
+Before: 단순히 문제를 해결한 것이 아닌, 재발 방지 체계를 만들었습니다.
+After: 문제를 해결하고 재발 방지 체계를 만들었습니다.
+
+Before: 그저 매뉴얼을 따르는 것을 넘어서 새로운 방식을 제안했습니다.
+After: 매뉴얼과 함께 새로운 처리 방식을 제안했습니다.
+```
+
+Reason:
+
+- This pattern sounds defensive and over-emphasizes differentiation.
+- It delays stating what the applicant actually did.
+- Readers trust direct claims more than claims that first deny weaker alternatives.
+
 ## Rewrite Order
 
 1. Lock facts, numbers, names, dates, tools, direct quotes, and user appeal points.
