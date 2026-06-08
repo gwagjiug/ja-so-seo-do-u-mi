@@ -2,6 +2,11 @@
   <img src="assets/social-preview.png" alt="자소서 도우미 - JD 기반 자기소개서 개선 스킬" width="820">
 </p>
 
+<p align="center">
+  <a href="README.md">한국어</a> |
+  <a href="README.en.md">English</a>
+</p>
+
 # 자소서 도우미 - ja-so-seo-do-u-mi v0.2
 
 채용공고/JD, 자기소개서 문항, 글자수 제한, 거친 초안만 붙여넣으면 **사용자의 어필 의도를 보존하면서 기업 제출용 자기소개서**로 다듬는 Codex 스킬입니다.
