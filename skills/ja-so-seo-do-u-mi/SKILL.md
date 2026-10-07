@@ -21,13 +21,13 @@ Accept a simple paste when these four parts are present or inferable:
 
 Optional signals: company, role, desired tone, requested mode, must-preserve facts or appeal points, blind-hiring constraints, and length-counting basis.
 
-Ask one short question only when a required part is missing, multiple prompts cannot be mapped, or a must-preserve point conflicts with prompt fit, length, fabrication safety, interview safety, or blind-hiring rules.
+Ask one short question only when a required part is missing, multiple prompts cannot be mapped, the requested editing scope is genuinely contradictory, or a must-preserve point conflicts with prompt fit, length, fabrication safety, interview safety, or blind-hiring rules.
 
 ## Core Rules
 
 1. Never invent experiences, numbers, achievements, tools, company facts, awards, periods, or responsibilities.
 2. Preserve user-provided facts and intended appeal points unless the user explicitly changes them or a hard submission risk requires compression or omission.
-3. Default to `preserve_revision`; use `rewrite` only for explicit requests like "아예 새로", "구조를 갈아엎어", or "제출본으로 재작성".
+3. Use `diagnose_only` for analysis or feedback without a request to edit. For editing requests, default to `preserve_revision`; use `rewrite` only when the user explicitly grants structural freedom. Analysis followed by editing is an editing request, not `diagnose_only`. Resolve scope using `intake-schema.md`.
 4. Answer the application prompt before polishing prose.
 5. Use the JD as context, not a keyword script; responsibilities and requirements outrank preferred qualifications and generic values.
 6. Replace vague traits with concrete behavior, role, result, and JD relevance without deleting the user's intended strength.
@@ -55,14 +55,17 @@ Load only what the task needs:
 3. **JD Parse**: extract job signals with this weight: `responsibilities > requirements > skills/domain > preferred > values`.
 4. **Prompt Classification**: classify the question and derive mandatory answer elements.
 5. **Diagnosis**: detect prompt mismatch, weak JD connection, vague traits, weak action/result, unclear contribution, JD overfit, formulaic prose, fabrication risk, and intent loss risk.
-6. **Rewrite Plan**: choose a structure that starts from the prompt answer and keeps locked appeal points unless prompt fit or submission safety requires otherwise.
-7. **Rewrite**: produce final submission prose. In `preserve_revision`, use the smallest structural change that solves the issue. In `rewrite`, restructure more freely but preserve or report locked appeal points.
-8. **Naturalness Pass**: remove cliches, generic praise, mechanical STAR, repetitive connectors, translationese, exaggerated emotion, and empty ambition while preserving factual meaning and user intent.
-9. **Audit**: check factual fidelity, user-intent fidelity, prompt fit, JD fit, length, fabrication risk, and blind-hiring/submission risks. Revise once for hard failures.
+6. **Mode Branch**: in `diagnose_only`, check that the diagnosis is grounded in the draft, then return findings and improvement directions using the diagnostic response below. Stop before rewriting, naturalness editing, or the final-essay audit. Continue to steps 7-10 only for `preserve_revision` or `rewrite`.
+7. **Rewrite Plan**: choose a structure that starts from the prompt answer and keeps locked appeal points unless prompt fit or submission safety requires otherwise.
+8. **Rewrite**: produce final submission prose. In `preserve_revision`, use the smallest structural change that solves the issue. In `rewrite`, restructure more freely but preserve or report locked appeal points.
+9. **Naturalness Pass**: remove cliches, generic praise, mechanical STAR, repetitive connectors, translationese, exaggerated emotion, and empty ambition while preserving factual meaning and user intent.
+10. **Audit**: check factual fidelity, user-intent fidelity, prompt fit, JD fit, length, fabrication risk, and blind-hiring/submission risks. Revise once for hard failures.
 
 ## Final Response
 
-Default:
+For `diagnose_only`, provide prioritized findings, supporting passages or missing evidence, and concrete improvement directions. Mention strengths worth preserving when useful. Do not produce replacement prose or a `[최종 제출본]`. If reporting length, label it as the draft's length; the diagnostic response itself is not subject to the essay's length limit.
+
+For `preserve_revision` and `rewrite`, use the format below. If the user requested analysis followed by editing, include a concise diagnosis before the revised essay; do not stop after analysis or ask for permission to perform the already requested edit.
 
 ```text
 [최종 제출본]

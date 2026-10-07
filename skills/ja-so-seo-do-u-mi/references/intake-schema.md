@@ -100,21 +100,15 @@ Draft markers include first-person Korean essay prose, often starting with:
 
 ### Requested Mode
 
-Default to `preserve_revision` unless the user clearly asks for aggressive rewriting.
+Choose the mode from the requested deliverable and scope, not from isolated keywords or a fixed mode priority:
 
-Mode markers:
+- `diagnose_only`: analysis, feedback, or diagnosis without a request to edit, such as `분석만`, `피드백만`, `문제점만`, or `진단해줘`. Return findings and improvement directions without rewriting the draft.
+- `preserve_revision`: editing without explicit structural freedom, such as `수정`, `첨삭`, `문장만`, `자연스럽게`, or `글자수만 맞춰줘`. Preserve any narrower constraint such as `구조는 유지`.
+- `rewrite`: explicit permission to rebuild the structure, such as `아예 새로`, `구조를 갈아엎어`, or `제출본으로 재작성`. Phrases like `다시 써줘` or `새 버전` alone do not override preservation constraints; use `preserve_revision` when structural freedom is unclear.
 
-- `preserve_revision`: 수정, 첨삭, 다듬어줘, 문장만, 자연스럽게, 어색한 부분만, 글자수만 맞춰줘
-- `rewrite`: 아예 새로, 구조를 갈아엎어, 제출본으로 재작성, 다시 써줘, 새 버전으로 만들어줘
-- `diagnose_only`: 분석만, 피드백만, 문제점만, 진단해줘
+For combined requests such as `문제점을 분석하고 수정해줘`, choose the editing mode and include both diagnosis and revised prose. For `진단 후 구조를 완전히 다시 잡아줘`, use `rewrite` and include the diagnosis. The word `분석` or `진단` does not cancel an accompanying editing request.
 
-If a prompt mixes modes, prefer the safer narrower mode:
-
-```text
-diagnose_only > preserve_revision > rewrite
-```
-
-Only use `rewrite` when the user explicitly grants structural freedom.
+Respect explicit limits on the current turn: `지금은 분석만, 수정은 나중에` means `diagnose_only`. A later request to edit changes the mode; do not carry an earlier diagnosis-only restriction into that new request. If the user gives genuinely incompatible instructions for the same deliverable, such as `절대 수정하지 말고 수정본도 줘`, ask one short scope question while providing any unambiguous diagnostic work.
 
 ### Appeal Points
 
@@ -144,6 +138,7 @@ Ask only when:
 - no draft exists for a revision request
 - no length exists and user explicitly asks to fit a limit
 - multiple prompts and one draft cannot be mapped
+- the user both forbids and requests editing of the same deliverable, with no clear sequence or scope distinction
 - the draft includes unsupported claims that would require confirmation
 - an explicit must-preserve point conflicts with the prompt, length, fabrication safety, or blind-hiring constraints
 
