@@ -7,7 +7,11 @@
   <a href="README.en.md">English</a>
 </p>
 
-# Jasoseo Helper - ja-so-seo-do-u-mi v0.2
+# Jasoseo Helper - ja-so-seo-do-u-mi
+
+[![GitHub Release](https://img.shields.io/github/v/release/gwagjiug/ja-so-seo-do-u-mi)](https://github.com/gwagjiug/ja-so-seo-do-u-mi/releases/latest)
+
+Release setup and maintenance: [automatic releases (Korean)](docs/releases.md)
 
 In Korean hiring, **jasoseo** is short for _jagi-sogaeseo_, a self-introduction essay submitted with a job application. It overlaps with a cover letter, but it is usually written as answers to company-provided questions and often has strict Korean character limits.
 
