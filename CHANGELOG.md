@@ -1,5 +1,13 @@
 # Changelog
 
+<!-- release:0.2.1 -->
+## [0.2.1](https://github.com/gwagjiug/ja-so-seo-do-u-mi/compare/v0.2.0...v0.2.1) (2026-10-07)
+
+### Bug Fixes
+
+* clarify skill diagnosis and editing mode routing ([#7](https://github.com/gwagjiug/ja-so-seo-do-u-mi/issues/7)) ([38b3421](https://github.com/gwagjiug/ja-so-seo-do-u-mi/commit/38b34214b8437361f306e6b413bd9ac7c3c9014a))
+<!-- /release:0.2.1 -->
+
 <!-- release:0.2.0 -->
 ## 0.2.0
 
