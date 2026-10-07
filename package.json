@@ -1,0 +1,21 @@
+{
+  "name": "jasoseo-release-tooling",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.15.0 <25"
+  },
+  "scripts": {
+    "test": "node --test tests/release/*.test.mjs",
+    "verify": "node scripts/release/verify.mjs",
+    "release": "node scripts/release/run.mjs",
+    "release:dry-run": "node scripts/release/run.mjs --dry-run",
+    "check:pr-title": "node scripts/release/check-pr-title.mjs"
+  },
+  "devDependencies": {
+    "@semantic-release/git": "11.0.1",
+    "conventional-changelog-conventionalcommits": "9.3.1",
+    "semantic-release": "25.0.9",
+    "yaml": "2.9.1"
+  }
+}

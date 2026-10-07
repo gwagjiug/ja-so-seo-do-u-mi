@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Preview version and notes without publishing
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+# Pending runs may be coalesced. Each run checks out current main and examines
+# every commit since the last tag, so coalescing never drops release changes.
+concurrency:
+  group: release-main
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Verify and release
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || !startsWith(github.event.head_commit.message, 'chore(release):'))
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - name: Check release App configuration
+        env:
+          APP_ID: ${{ vars.RELEASE_APP_ID }}
+          APP_KEY: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+        run: |
+          if [ -z "$APP_ID" ] || [ -z "$APP_KEY" ]; then
+            echo '::error::Configure the release environment App ID/private key and ruleset bypass. See docs/releases.md.'
+            exit 1
+          fi
+      - uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2
+        id: app
+        with:
+          app-id: ${{ vars.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ steps.app.outputs.token }}
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run verify
+      - run: npm test
+      - name: Publish or preview
+        env:
+          GITHUB_TOKEN: ${{ steps.app.outputs.token }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+          GIT_AUTHOR_NAME: jasoseo-release[bot]
+          GIT_AUTHOR_EMAIL: jasoseo-release[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: jasoseo-release[bot]
+          GIT_COMMITTER_EMAIL: jasoseo-release[bot]@users.noreply.github.com
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            npm run release:dry-run
+          else
+            npm run release
+          fi

@@ -7,7 +7,11 @@
   <a href="README.en.md">English</a>
 </p>
 
-# 자소서 도우미 - ja-so-seo-do-u-mi v0.2
+# 자소서 도우미 - ja-so-seo-do-u-mi
+
+[![GitHub Release](https://img.shields.io/github/v/release/gwagjiug/ja-so-seo-do-u-mi)](https://github.com/gwagjiug/ja-so-seo-do-u-mi/releases/latest)
+
+릴리스 운영 및 최초 설정: [자동 릴리스 안내](docs/releases.md)
 
 채용공고/JD, 자기소개서 문항, 글자수 제한, 거친 초안만 붙여넣으면 **사용자의 어필 의도를 보존하면서 기업 제출용 자기소개서**로 다듬는 Codex 스킬입니다.
 
