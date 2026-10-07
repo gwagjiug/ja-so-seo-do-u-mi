@@ -22,7 +22,7 @@ async function fixture(t) {
   const cwd = join(root, "work");
   const remote = join(root, "origin.git");
   await mkdir(cwd);
-  git(root, "init", "--bare", remote);
+  git(root, "init", "--bare", "-b", "main", remote);
   git(cwd, "init", "-b", "main");
   git(cwd, "config", "user.name", "Release test");
   git(cwd, "config", "user.email", "release-test@example.invalid");
