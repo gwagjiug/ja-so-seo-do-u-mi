@@ -33,7 +33,7 @@ General writing tools can make sentences smoother, but they are weak at the ques
 - Does the essay avoid presenting team outcomes as individual achievements?
 - Does it satisfy submission rules such as 700 characters, including or excluding spaces?
 
-Jasoseo Helper handles these issues through a step-by-step workflow. It parses the input, locks the appeal points the user wants to preserve, interprets the JD and question, diagnoses weak points in the draft, rewrites it for submission, and finally verifies length, factual preservation, and intent preservation.
+Jasoseo Helper handles these issues through a step-by-step workflow. It parses the input and supplied submission rules, locks the appeal points the user wants to preserve, interprets the JD and question, diagnoses weak points, edits within the permitted scope, and finally verifies length, factual preservation, and intent preservation.
 
 ## Before / After
 
@@ -59,7 +59,7 @@ The point is not flashy wording. The point is **real action, results, and job re
 5. **JD-based** - Prioritize main responsibilities and qualifications. Use preferred qualifications and company values only as supporting context.
 6. **Evidence over labels** - Replace abstract labels such as responsibility, communication, and problem-solving with actions and results.
 7. **Avoid JD overfitting** - Do not list JD terms. Keep only the language that connects to real experience in the draft.
-8. **Submission safety** - Check character count, company name, role name, blind hiring risks, and interview defensibility.
+8. **Submission safety** - Check the applicable question/form, character count, company and role names, AI-use scope, institution-specific blind hiring rules, and interview defensibility.
 
 ## Architecture
 
@@ -211,6 +211,8 @@ Revision summary:
 - Did not add numbers or outcomes that were not in the source
 ```
 
+If a notice allows spelling correction only, the skill stays within that scope. An AI verification warning or unresolved material submission-rule conflict is not presented as cleared for submission; permitted work and outstanding checks remain distinct. Explicitly prohibited assistance is not supplied under a "draft" or "sample" label.
+
 ## When the input is incomplete
 
 Jasoseo Helper does not force users into a long form. It asks a short follow-up only in cases like these:
@@ -219,6 +221,10 @@ Jasoseo Helper does not force users into a long form. It asks a short follow-up 
 - There are multiple questions, but only one draft, so matching is unclear
 - A sentence would require performance numbers or technical proficiency that are not in the draft
 - Blind hiring rules appear important, but the criteria are unclear
+- Supplied notices/forms conflict on the question or length, with no clear applicable version
+- Supplied AI-use wording is materially ambiguous about the requested operation
+
+Missing recruitment-round, source-URL, or AI-policy metadata alone does not trigger extra questions. An absent policy is not treated as either permission or prohibition.
 
 Example:
 
@@ -236,7 +242,7 @@ The main skill file stays short, and detailed judgment rules are separated into 
 
 | File                                                                                                       | Role                                            |
 | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`intake-schema.md`](skills/ja-so-seo-do-u-mi/references/intake-schema.md)                                 | Input parsing rules                             |
+| [`intake-schema.md`](skills/ja-so-seo-do-u-mi/references/intake-schema.md)                                 | Input parsing, source precedence, AI-use scope, and blind hiring rules |
 | [`jd-parser-rules.md`](skills/ja-so-seo-do-u-mi/references/jd-parser-rules.md)                             | JD structure extraction rules                   |
 | [`question-taxonomy.md`](skills/ja-so-seo-do-u-mi/references/question-taxonomy.md)                         | Required elements by question type              |
 | [`field-writing-rules.md`](skills/ja-so-seo-do-u-mi/references/field-writing-rules.md)                     | Practical jasoseo writing principles            |
@@ -293,6 +299,15 @@ Needs confirmation:
 - If you have a concrete number for "sales improvement," please share it. The current draft has no number, so I expressed the result qualitatively.
 ```
 
+### 7. Submission checks before editing
+
+- **Applicable question and form:** Use the notice/form for the supplied company, role, and recruitment round, including an applicable correction. Do not substitute an old question or example. Using a pasted excerpt is not independent verification of the latest notice.
+- **AI-use distinctions:** Separate permission, limited permission, prohibition, verification warnings, and missing information. A proofreading-only rule does not permit restructuring; a verification warning does not automatically mean a blanket ban. AI work competencies are separate from permission to use AI in application preparation.
+- **Institution-specific blind hiring:** Anonymize only the direct and indirect identifiers prohibited by the applicable notice, preserving permitted names and supported work details. A name required in evidence documents is not automatically allowed in an essay. Do not repeat removed names or emails in explanations.
+- **Same simple input:** Keep the existing `JD + question + length + draft` contract. Use supplied material first; research current information only when the user requests it.
+
+The submission safety scenarios in [`mode-routing.md`](evals/mode-routing.md) cover these policy boundaries.
+
 ## If you do not like the result
 
 Give another natural-language instruction.
@@ -308,7 +323,7 @@ Give another natural-language instruction.
 The skill does not invent or change the following on its own.
 
 - Numbers, periods, dates, and amounts
-- Company names, role names, school names, institution names, and project names
+- Company names, role names, school names, institution names, and project names (except reported anonymization required by applicable blind hiring rules)
 - Technologies used, certificates, awards, papers, and product names
 - Direct quotations or the original essay question
 - The boundary between team outcomes and individual contribution

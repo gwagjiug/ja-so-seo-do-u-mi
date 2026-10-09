@@ -11,7 +11,7 @@ The skill should work when the user provides only:
 - 글자수 제한
 - 초안
 
-Do not require company name, role name, desired tone, or extra experience unless the provided text is too ambiguous to continue.
+Do not require company name, role name, recruitment round, source URL, AI policy, desired tone, or extra experience unless the provided text is too ambiguous to continue. The four-part paste remains sufficient for ordinary editing.
 
 ## Internal Object
 
@@ -41,6 +41,16 @@ Do not require company name, role name, desired tone, or extra experience unless
   "omitted_or_compressed_points": [],
   "company": null,
   "role": null,
+  "submission_context": {
+    "round": null,
+    "source": null,
+    "ai_policy": {
+      "status": "unknown",
+      "raw": null,
+      "scope": null
+    },
+    "blind_rules": []
+  },
   "constraints": [],
   "confidence": {
     "jd": "high|medium|low",
@@ -98,6 +108,39 @@ Draft markers include first-person Korean essay prose, often starting with:
 - 프로젝트에서
 - 인턴 기간
 
+### Submission Context
+
+Extract available rules before choosing an editing scope. Keep the source and exact wording of material constraints; distinguish a user-supplied excerpt from an independently verified notice. `submission_context` describes the applicable source, while `constraints` retains its prompt, length, format, and other submission requirements. Missing metadata does not require a new form or imply permission.
+
+#### Notice And Form Precedence
+
+- Use the official notice/form applicable to the supplied company, role, and recruitment round. A clearly applicable correction supersedes the earlier version.
+- The current application form outranks a previous round's questions, sample essays, generic company advice, and the structure of an old draft. Do not reconstruct missing current questions from memory or substitute a different role's form.
+- If two applicable sources conflict and no correction or scope distinction resolves them, ask one short question about the material conflict. Continue only work that does not depend on that choice; do not present a final submission version.
+- A pasted notice or date alone does not prove it is the latest. Use the supplied material without claiming live verification. Browse for updates only when the user requests fresh research; otherwise request the relevant excerpt only when needed to resolve a material issue.
+
+#### AI-Use Scope
+
+Set `ai_policy.status` to one of the following and retain the quoted rule in `raw` and the affected activity in `scope`:
+
+| Status | Evidence | Response |
+| --- | --- | --- |
+| `allowed` | The notice explicitly permits the relevant assistance. | Edit within that permission and any conditions, including disclosure requirements; never invent a compliance declaration. |
+| `restricted` | Only specified assistance is permitted, such as spelling correction. | Perform only those operations and explain the narrower scope, even when the user requests a full rewrite. |
+| `prohibited` | The requested AI assistance is explicitly forbidden. | Do not generate the prohibited deliverable, including as a sample or draft. Explain the restriction; offer feedback or other assistance only when clearly outside the prohibited scope. |
+| `warning` | The notice warns of AI/plagiarism verification or possible penalties without specifying a blanket ban. | Do not infer either full permission or total prohibition. If revising, label it as a draft for review and flag the exact warning and unresolved permission scope. |
+| `unknown` | No applicable rule is supplied or its meaning is unclear. | Absence alone does not block ordinary editing or trigger a question. If supplied wording creates a material ambiguity about the requested operation, ask one short question and avoid that operation until resolved. Never claim AI use is approved. |
+
+Classify the specific activity, not the company as a whole: AI skills in the JD or permission to use AI in a work task do not authorize AI-written applications. A live-interview restriction does not automatically prohibit application proofreading. Follow the explicit scope of supplied rules, not remembered company policies. Never promise detector evasion, undetectability, or acceptance; naturalness editing cannot resolve a policy restriction.
+
+#### Institution-Specific Blind Hiring
+
+- Apply the supplied notice's prohibited identifiers, indirect clues, field scope, and exceptions. Do not assume every employer prohibits school, employer, or institution names.
+- Separate identity/evidence fields from essay fields. A name required in a certificate does not authorize its appearance in a blind essay, and anonymizing an essay does not change the underlying fact.
+- Remove or generalize prohibited identifiers using only supported descriptions. Keep the applicant's role, actions, and outcomes; do not invent a different employer, location, institution size, or responsibility.
+- Do not repeat the removed name or indirect identifier in quoted diagnosis evidence, correction comparisons, `살린 핵심`, or omission notes. Describe the category instead, such as `경험 기관명을 비식별 처리했습니다`.
+- If the user explicitly requires keeping a prohibited identifier, explain the conflict and ask one short question rather than presenting a violating essay as final. Otherwise anonymize without requesting permission and report the change.
+
 ### Requested Mode
 
 Choose the mode from the requested deliverable and scope, not from isolated keywords or a fixed mode priority:
@@ -141,5 +184,7 @@ Ask only when:
 - the user both forbids and requests editing of the same deliverable, with no clear sequence or scope distinction
 - the draft includes unsupported claims that would require confirmation
 - an explicit must-preserve point conflicts with the prompt, length, fabrication safety, or blind-hiring constraints
+- applicable notice/form versions conflict on a material requirement and the supplied sources do not resolve it
+- supplied AI-use wording leaves the requested operation materially ambiguous
 
-Use one short question, not a large form.
+Use one short question, not a large form. Do not ask for missing round/source/policy metadata by default, or ask the user to decide whether an explicit prohibition applies when its scope is already clear.

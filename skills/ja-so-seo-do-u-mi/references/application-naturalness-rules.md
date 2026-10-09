@@ -6,6 +6,8 @@ This file is specific to job application essays. It should not be treated as a g
 
 Naturalness is never permission to erase the applicant's intended appeal. Before deleting, replacing, or demoting a sentence, check whether it is part of the Appeal Lock from `SKILL.md`.
 
+The intake submission check applies before this pass. Do not use naturalness editing to bypass an AI-use restriction or promise detector evasion. Preserve facts while anonymizing identifiers required by the applicable blind-hiring rules, including in explanations; do not reintroduce them from the original draft.
+
 ## Priority Levels
 
 - **P0 Submission Risk**: fabrication risk, company/role error, or interview-unsafe claim. Delete, soften, or ask for confirmation immediately; if this affects a locked appeal point, report it.

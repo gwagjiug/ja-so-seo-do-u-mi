@@ -27,7 +27,9 @@ Extract the job target and evidence priorities from pasted 채용공고/JD text.
 | 우대사항, Preferred, 이런 경험이면 좋아요        | preferred              |
 | 기술스택, Skills, 사용 툴                        | skills                 |
 | 인재상, 핵심가치, Culture, 일하는 방식           | values                 |
-| 제출서류, 유의사항, 블라인드, 글자수             | submission_constraints |
+| 제출서류, 유의사항, 블라인드, 글자수, AI 활용 규정, 정정공고 | submission_constraints |
+
+Carry the source, scope, and wording of material submission constraints into the intake contract. Resolve applicable notice/form versions and AI/blind-hiring rules using `intake-schema.md` before applying job-signal weights. Submission constraints are not lower-priority job preferences. Distinguish AI work competencies from permission to use AI to prepare an application.
 
 ## Matching Priority
 
