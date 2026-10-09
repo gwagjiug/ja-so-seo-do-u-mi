@@ -1,5 +1,13 @@
 # Changelog
 
+<!-- release:0.3.0 -->
+## [0.3.0](https://github.com/gwagjiug/ja-so-seo-do-u-mi/compare/v0.2.1...v0.3.0) (2026-10-09)
+
+### Features
+
+* strengthen application submission safety ([#8](https://github.com/gwagjiug/ja-so-seo-do-u-mi/issues/8)) ([997eabe](https://github.com/gwagjiug/ja-so-seo-do-u-mi/commit/997eabee07893e7260fc8d602cb1de393f695fb4))
+<!-- /release:0.3.0 -->
+
 <!-- release:0.2.1 -->
 ## [0.2.1](https://github.com/gwagjiug/ja-so-seo-do-u-mi/compare/v0.2.0...v0.2.1) (2026-10-07)
 

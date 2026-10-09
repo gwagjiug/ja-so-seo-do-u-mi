@@ -1,6 +1,6 @@
 ---
 name: ja-so-seo-do-u-mi
-version: "0.2.1"
+version: "0.3.0"
 description: Use when the user wants to revise, diagnose, rewrite, shorten, lengthen, or polish a Korean job application essay or 자기소개서 using a pasted 채용공고/JD, 자기소개서 문항, 글자수 제한, and rough draft. Default to preserving the user's intended appeal points unless they explicitly ask for a full rewrite. Trigger on requests such as "자소서 수정", "자기소개서 고쳐줘", "채용공고에 맞게 자소서", "JD 기반 자소서", "문장만 다듬어줘", "글자수 맞춰줘", "AI 티 안 나게 자소서", "기업 제출용으로 다듬어줘", and "ja-so-seo-do-u-mi".
 ---
 

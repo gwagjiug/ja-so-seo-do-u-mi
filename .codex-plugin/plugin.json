@@ -1,6 +1,6 @@
 {
   "name": "ja-so-seo-do-u-mi",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Codex plugin for revising Korean job application essays from a pasted JD, prompt, length limit, and rough draft into a submission-ready 자기소개서 while preserving facts.",
   "author": {
     "name": "jiukkwak"
