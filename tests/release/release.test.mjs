@@ -32,9 +32,31 @@ async function fixture(t) {
   await writeFile(join(cwd, "README.md"), "Historical content\n");
   git(cwd, "add", ".");
   git(cwd, "commit", "-m", "feat!: historical breaking change");
-  for (const path of [pluginPath, skillPath, "CHANGELOG.md", ".release-baseline.json"]) {
+  // Keep the bootstrap snapshot independent of the project's current release.
+  const files = [
+    [pluginPath, `${JSON.stringify({ name: "release-fixture", version: "0.2.0", skills: "./skills/" }, null, 2)}\n`],
+    [skillPath, [
+      "---",
+      "name: release-fixture",
+      'version: "0.2.0"',
+      "description: Synthetic skill for release tests",
+      "---",
+      "",
+      "# Release fixture",
+      "",
+      "Preserve user-provided facts.",
+      "",
+      "```text",
+      'version: "0.2.0"',
+      "```",
+      ""
+    ].join("\n")],
+    ["CHANGELOG.md", "# Changelog\n\n<!-- release:0.2.0 -->\n## 0.2.0\n\nBaseline release notes.\n<!-- /release:0.2.0 -->\n"],
+    [".release-baseline.json", '{\n  "version": "0.2.0"\n}\n']
+  ];
+  for (const [path, content] of files) {
     await mkdir(join(cwd, path, ".."), { recursive: true });
-    await writeFile(join(cwd, path), await readFile(join(project, path)));
+    await writeFile(join(cwd, path), content);
   }
   git(cwd, "add", ".");
   git(cwd, "commit", "-m", "ci: configure automatic releases");
@@ -68,13 +90,14 @@ test("PR title validation accepts scope/breaking changes and rejects ambiguous t
 test("version update preserves skill prose and is idempotent", async t => {
   const { cwd } = await fixture(t);
   const original = await readFile(join(cwd, skillPath), "utf8");
-  await updateRelease(cwd, "0.2.1", "## 0.2.1\n\nFixed mode routing.");
+  const notes = "## 0.2.1\n\nFixture release notes.";
+  await updateRelease(cwd, "0.2.1", notes);
   assert.equal((await readVersions(cwd)).version, "0.2.1");
   assert.equal(await readFile(join(cwd, skillPath), "utf8"), original.replace('version: "0.2.0"', 'version: "0.2.1"'));
   const changelog = await readFile(join(cwd, "CHANGELOG.md"), "utf8");
   await updateRelease(cwd, "0.2.1", "Retried notes");
   assert.equal(await readFile(join(cwd, "CHANGELOG.md"), "utf8"), changelog);
-  assert.match(releaseNotes(changelog, "0.2.1"), /Fixed mode routing/);
+  assert.equal(releaseNotes(changelog, "0.2.1"), notes);
   await assert.rejects(updateRelease(cwd, "0.1.0", "Downgrade"), /downgrade/);
 });
 
