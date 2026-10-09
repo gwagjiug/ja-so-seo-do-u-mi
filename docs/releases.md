@@ -64,6 +64,8 @@ npm test
 - `Verify` PR workflow: PR 제목 검사와 위 검증 실행. 비밀키를 사용하지 않는다.
 - `Release` workflow: 현재 main을 체크아웃하고 검증이 통과하면 게시. push 이벤트이므로 PR 병합뿐 아니라 허용된 main 직접 푸시도 처리한다.
 
+릴리스 테스트의 임시 저장소는 고정된 합성 `0.2.0` 플러그인·스킬·CHANGELOG·기준 파일로 시작한다. 현재 프로젝트의 버전 파일이나 릴리스 노트를 복사하지 않으므로 실제 릴리스가 진행돼도 초기 조건이 바뀌지 않는다. 실제 프로젝트의 버전·CHANGELOG 일치는 별도의 `verify` 명령에서 확인한다.
+
 GitHub **Actions → Release → Run workflow**에서 branch를 main으로 선택한다. `dry_run`은 기본 true이며, 예상 버전·노트를 확인한 뒤 false로 실행하면 게시한다. dry-run도 App 인증이 필요하다. 최초 dry-run은 runner 안에만 기준 태그를 만들며 원격 태그·Release·버전 파일은 변경하지 않는다. 로컬에서 `npm run release:dry-run`을 실행하면 로컬 기준 태그가 남을 수 있으므로 깨끗한 임시 checkout 사용을 권장한다.
 
 실행을 직렬화하고 매번 최신 main을 읽는다. 연속 push로 대기 실행이 합쳐지더라도 마지막 태그 이후 전체 커밋을 분석한다. 병합마다 반드시 태그 하나를 만드는 정책은 아니며 여러 변경이 한 릴리스에 포함될 수 있다. 실행 도중 main이 앞서가면 강제 푸시하지 않고 다음 실행 또는 main 수동 실행에서 처리한다.
