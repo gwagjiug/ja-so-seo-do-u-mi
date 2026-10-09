@@ -4,7 +4,7 @@ Run this before final response.
 
 ## Hard Failures
 
-- final text exceeds hard length limit
+- final text violates a hard minimum or maximum length
 - company name, role, number, date, tool, award, or institution is changed incorrectly
 - unprovided achievement, number, technical skill, or responsibility is added
 - prompt is not answered
@@ -12,15 +12,33 @@ Run this before final response.
 - final answer relies on unsupported JD jargon instead of the applicant's evidence
 - a locked user appeal point is removed or replaced without reporting why
 - blind-hiring prohibited personal data appears when relevant
+- the answer uses a superseded or wrong-role prompt/form despite an applicable version being supplied
+- the assistance exceeds the notice's explicit AI-use scope
+- an AI verification warning or material unresolved policy/form conflict is presented as cleared for submission
+- anonymized identifiers are repeated in feedback, quoted evidence, or omission notes
 
-If a hard failure appears, revise once. If still unresolved, report it.
+If a hard failure appears, revise once within the permitted scope. If still unresolved, report it without a submission-ready label. Do not return prohibited assistance under a draft label or add a disclaimer to excuse it. Use the submission check even in diagnosis-only mode, where the final-essay audit does not otherwise run.
+
+## Submission Context
+
+Check:
+
+- the supplied company, role, recruitment round, applicable correction, prompt, length, and format are used consistently
+- source authority and currentness are not claimed beyond what was actually provided or verified
+- AI permission, limited permission, prohibition, verification warning, and missing information are distinguished using `intake-schema.md`
+- permitted operations match the actual output, including a proofreading-only limit when relevant
+- verification warnings and material unresolved conflicts remain visible in `확인 필요`; an absent policy alone is not treated as a ban
+- blind-hiring restrictions and exceptions are specific to the notice and field, not generalized from another employer
+- identifiers needed for evidence documents are not copied into prohibited essay fields
+- anonymization preserves supported work details and is reported without re-exposing identifiers
+
 
 ## Factual Fidelity
 
 Check:
 
 - all numbers preserved
-- all company/project/institution names preserved
+- company/project/institution names preserved unless the applicable blind-hiring rule requires anonymization; do not replace them with invented names
 - periods and dates preserved
 - user role not exaggerated
 - team result not converted into personal result

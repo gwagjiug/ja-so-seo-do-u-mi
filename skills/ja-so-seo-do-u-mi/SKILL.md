@@ -19,9 +19,9 @@ Accept a simple paste when these four parts are present or inferable:
 초안:
 ```
 
-Optional signals: company, role, desired tone, requested mode, must-preserve facts or appeal points, blind-hiring constraints, and length-counting basis.
+Optional signals: company, role, recruitment round, source notice/form, desired tone, requested mode, must-preserve facts or appeal points, AI-use rules, blind-hiring constraints, and length-counting basis. Extract these when supplied; do not add mandatory intake fields.
 
-Ask one short question only when a required part is missing, multiple prompts cannot be mapped, the requested editing scope is genuinely contradictory, or a must-preserve point conflicts with prompt fit, length, fabrication safety, interview safety, or blind-hiring rules.
+Ask one short question only when a required part is missing, multiple prompts cannot be mapped, editing scope or applicable submission rules genuinely conflict, or a must-preserve point conflicts with prompt fit, length, fabrication safety, interview safety, or blind-hiring rules. Missing policy metadata alone is not a reason to interrupt ordinary editing.
 
 ## Core Rules
 
@@ -33,13 +33,14 @@ Ask one short question only when a required part is missing, multiple prompts ca
 6. Replace vague traits with concrete behavior, role, result, and JD relevance without deleting the user's intended strength.
 7. Remove formulaic application prose only after checking factual meaning and Appeal Lock.
 8. Stay within the length limit and report residual risks, including any locked appeal point that was heavily compressed or omitted.
+9. Check the applicable notice/form before editing. Follow its AI-use scope and institution-specific blind-hiring rules; distinguish a verification warning from a ban. Do not claim currentness, permission, or submission safety that was not verified.
 
 ## References
 
 Load only what the task needs:
 
-- `references/intake-schema.md`: parse input, requested mode, appeal points, and clarifying-question rules.
-- `references/jd-parser-rules.md`: extract company, role, responsibilities, requirements, skills, and values.
+- `references/intake-schema.md`: parse input, requested mode, appeal points, source/form precedence, AI-use scope, blind-hiring rules, and clarifying-question rules.
+- `references/jd-parser-rules.md`: extract company, role, responsibilities, requirements, skills, values, and submission constraints.
 - `references/question-taxonomy.md`: classify prompt type and required answer elements.
 - `references/field-writing-rules.md`: recruiter-style writing heuristics and concrete evidence principles.
 - `references/diagnosis-taxonomy.md`: diagnose weak drafts, including `Intent Loss Risk`.
@@ -50,7 +51,7 @@ Load only what the task needs:
 
 ## Workflow
 
-1. **Intake**: split or infer JD, prompt, length rule, draft, requested mode, constraints, and confidence. Use `intake-schema.md`.
+1. **Intake and Submission Check**: split or infer JD, prompt, length rule, draft, requested mode, constraints, and confidence. Before editing or quoting draft evidence, resolve supplied notice/form versions and check AI-use scope and blind-hiring restrictions using `intake-schema.md`. If a rule blocks the requested work, explain it and perform only clearly permitted work.
 2. **Appeal Lock**: before deep JD parsing or rewriting, lock the user's main claim, early/repeated/detailed experiences, intended strengths, values, motivation, and explicit "꼭 살려줘" points.
 3. **JD Parse**: extract job signals with this weight: `responsibilities > requirements > skills/domain > preferred > values`.
 4. **Prompt Classification**: classify the question and derive mandatory answer elements.
@@ -59,9 +60,11 @@ Load only what the task needs:
 7. **Rewrite Plan**: choose a structure that starts from the prompt answer and keeps locked appeal points unless prompt fit or submission safety requires otherwise.
 8. **Rewrite**: produce final submission prose. In `preserve_revision`, use the smallest structural change that solves the issue. In `rewrite`, restructure more freely but preserve or report locked appeal points.
 9. **Naturalness Pass**: remove cliches, generic praise, mechanical STAR, repetitive connectors, translationese, exaggerated emotion, and empty ambition while preserving factual meaning and user intent.
-10. **Audit**: check factual fidelity, user-intent fidelity, prompt fit, JD fit, length, fabrication risk, and blind-hiring/submission risks. Revise once for hard failures.
+10. **Audit**: check factual fidelity, user-intent fidelity, applicable prompt/form, length, JD fit, AI-use scope, and blind-hiring/submission risks. Revise once for hard failures; never label an unresolved hard failure as submission-ready.
 
 ## Final Response
+
+Submission rules take precedence over the requested editing mode and the standard output below. Label limited proofreading as a correction, not a full submission-ready revision. For an AI verification warning or unresolved material policy/form conflict, use `[수정안]` only if editing is permitted, explain the specific issue under `확인 필요`, and do not certify submission eligibility. If the requested assistance is prohibited, do not provide that assistance under a different label; explain the rule and any clearly permitted alternative. Do not repeat anonymized identifiers in feedback or omission notes.
 
 For `diagnose_only`, provide prioritized findings, supporting passages or missing evidence, and concrete improvement directions. Mention strengths worth preserving when useful. Do not produce replacement prose or a `[최종 제출본]`. If reporting length, label it as the draft's length; the diagnostic response itself is not subject to the essay's length limit.
 

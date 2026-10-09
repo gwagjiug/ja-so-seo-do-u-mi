@@ -25,6 +25,8 @@ Default to preservation-first revision:
 
 Use full rewrite mode only when the user explicitly asks for a new structure, full rewrite, or submission-ready rewrite from scratch. Even then, preserve or report locked appeal points.
 
+The submission check in `intake-schema.md` bounds both modes. A rewrite request does not override a proofreading-only rule or explicit AI prohibition. If a verification warning leaves submission eligibility unresolved, return only a permitted draft with the specific risk, not a certified final submission. Apply the applicable form and anonymize only what its blind-hiring rules require; describe anonymization without repeating identifiers.
+
 ## Concreteness Anchors
 
 Every main paragraph should contain concrete anchors that make the claim interview-safe. Choose anchors that fit the role instead of forcing a single pattern.
